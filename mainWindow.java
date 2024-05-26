@@ -7,12 +7,11 @@ public class mainWindow implements ActionListener, FocusListener {
 
     JFrame frame = new JFrame();
     boolean isSearchFieldVisible = false;
-    boolean isAccountPanelVisible = false;
 
     // Main panel to hold all components
     JPanel cards = new JPanel(new CardLayout());
     JPanel mainPanel = new JPanel();
-    JPanel accountPanel = new JPanel();
+    
 
     // Search
     JPanel searchButtonPanel = new JPanel();
@@ -66,12 +65,9 @@ public class mainWindow implements ActionListener, FocusListener {
     ImageIcon accountIcon = new ImageIcon("images/icons8-account-30.png");
     JButton accountButton = new JButton(accountIcon);
 
-    mainWindow() {
+    AccountPanel accountPanel;
 
-        accountPanel.setLayout(new BorderLayout());
-        accountPanel.setBackground(new Color(32, 32, 32));
-        accountPanel.setBounds(0, 0, 450, 830);
-        accountPanel.setVisible(false);
+    mainWindow() {
 
 
         hotelsPanels = new JPanel[hotelNames.length];
@@ -168,6 +164,7 @@ public class mainWindow implements ActionListener, FocusListener {
         bookmarkButton.setPreferredSize(new Dimension(100, 60));
         bookmarkButton.setBackground(new Color(32, 32, 32));
         bookmarkButton.setFocusPainted(false);
+        bookmarkButton.addActionListener(this);
         panel5.add(bookmarkButton);
     
         accountButton.setBorderPainted(false);
@@ -207,7 +204,7 @@ public class mainWindow implements ActionListener, FocusListener {
         searchField.addFocusListener(this);
         
         panel5.setBounds(0, 730, 450, 60);
-        accountPanel.add(panel5, BorderLayout.SOUTH);
+        
 
 
         // Add components to mainPanel
@@ -218,8 +215,12 @@ public class mainWindow implements ActionListener, FocusListener {
         mainPanel.add(labelPanel);
 
         
-    
+        AccountPanel accountPanel = new AccountPanel((CardLayout) cards.getLayout(),  (CardLayout)cards.getLayout());;
+
+        BookmarkPanel bookmarkPanel = new BookmarkPanel((CardLayout) cards.getLayout());
+
         cards.add(mainPanel, "mainPanel");
+        cards.add(bookmarkPanel, "bookmarkPanel");
         cards.add(accountPanel, "accountPanel");
     
         frame.add(cards);
@@ -268,12 +269,14 @@ public class mainWindow implements ActionListener, FocusListener {
             showCurrentHotelPanel();
         }
 
-        CardLayout cardLayout = (CardLayout) cards.getLayout();
+        
         if (e.getSource() == accountButton) {
+            CardLayout cardLayout = (CardLayout) cards.getLayout();
             cardLayout.show(cards, "accountPanel");
             
-        } else if (e.getSource() == homeButton) {
-            cardLayout.show(cards, "mainPanel");
+        } else if (e.getSource() == bookmarkButton) {
+            CardLayout cardLayout = (CardLayout) cards.getLayout();
+            cardLayout.show(cards, "bookmarkPanel");
             
         }
     }
