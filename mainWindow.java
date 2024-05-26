@@ -46,6 +46,13 @@ public class mainWindow implements ActionListener, FocusListener {
                                     };
 
     String[] hotelImages = {"images/hotel1.jpg", "images/wesGate.jpg", "images/hotelLourdes.jpg", "images/laElliana.jpg", "images/sabelInn.jpg"};
+
+    String[] prices = { "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 4,500<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
+                        "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 1,080<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
+                        "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 1,790<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
+                        "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 1,512<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
+                        "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 1,194<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
+                        };
     
     JPanel[] hotelsPanels; // Array to store hotel panels
     int currentHotelIndex = 0;
@@ -74,6 +81,7 @@ public class mainWindow implements ActionListener, FocusListener {
             // Create components for each hotel
             JLabel hotelNameLabel = new JLabel(hotelNames[i]);
             JLabel hotelDescriptionLabel = new JLabel(hotelDescriptions[i]);
+            JLabel hotelPrices = new JLabel(prices[i]);
             JButton2 bookNowButton = new JButton2("Book Now");
             ImageIcon hotelBackground = new ImageIcon(hotelImages[i]);
             Image hotelImage = hotelBackground.getImage();
@@ -84,7 +92,7 @@ public class mainWindow implements ActionListener, FocusListener {
             bookNowButton.setForeground(Color.white);
             bookNowButton.setBackground(new Color(52, 186, 235));
             bookNowButton.setBorderPainted(false);
-            bookNowButton.setPreferredSize(new Dimension(150, 50));
+            bookNowButton.setPreferredSize(new Dimension(150, 40));
             bookNowButton.setArcSize(50, 50);
             bookNowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     
@@ -98,16 +106,18 @@ public class mainWindow implements ActionListener, FocusListener {
             // Set properties for hotel name label
             hotelNameLabel.setFont(new Font("SansSerif", Font.PLAIN, 30).deriveFont(Font.BOLD, 30));
             hotelNameLabel.setForeground(Color.white);
+            hotelPrices.setForeground(Color.white);
     
             // Set properties for hotel description label
             hotelDescriptionLabel.setForeground(Color.white);
     
             // Create panel for hotel information
             JPanel infoPanel = new JPanel();
-            infoPanel.setLayout(new GridLayout(3, 1));
+            infoPanel.setLayout(new GridLayout(4, 1));
             infoPanel.setBackground(new Color(40, 40, 40));
             infoPanel.add(hotelNameLabel);
             infoPanel.add(hotelDescriptionLabel);
+            infoPanel.add(hotelPrices);
             infoPanel.add(bookNowPanel);
     
             // Create panel for each hotel
@@ -116,7 +126,7 @@ public class mainWindow implements ActionListener, FocusListener {
             hotelsPanels[i].setLayout(new GridLayout(2, 1));
             hotelsPanels[i].add(hotelPanel);
             hotelsPanels[i].add(infoPanel);
-            hotelsPanels[i].setBounds(40, 280, 350, 430);
+            hotelsPanels[i].setBounds(40, 260, 350, 460);
         }
     
         // Initialize the first hotel panel to be visible
