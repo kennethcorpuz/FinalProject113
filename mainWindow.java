@@ -61,8 +61,6 @@ public class mainWindow implements ActionListener, FocusListener {
     JPanel panel5 = new JPanel();
     ImageIcon homeIcon = new ImageIcon("images/icons8-home-30.png");
     JButton homeButton = new JButton(homeIcon);
-    ImageIcon shareIcon = new ImageIcon("images/icons8-share-30.png");
-    JButton shareButton = new JButton(shareIcon);
     ImageIcon bookmarkIcon = new ImageIcon("images/icons8-bookmark-30.png");
     JButton bookmarkButton = new JButton(bookmarkIcon);
     ImageIcon accountIcon = new ImageIcon("images/icons8-account-30.png");
@@ -166,12 +164,6 @@ public class mainWindow implements ActionListener, FocusListener {
         homeButton.addActionListener(this);
         panel5.add(homeButton);
     
-        shareButton.setBorderPainted(false);
-        shareButton.setPreferredSize(new Dimension(100, 60));
-        shareButton.setBackground(new Color(32, 32, 32));
-        shareButton.setFocusPainted(false);
-        panel5.add(shareButton);
-    
         bookmarkButton.setBorderPainted(false);
         bookmarkButton.setPreferredSize(new Dimension(100, 60));
         bookmarkButton.setBackground(new Color(32, 32, 32));
@@ -185,7 +177,7 @@ public class mainWindow implements ActionListener, FocusListener {
         accountButton.addActionListener(this);
         panel5.add(accountButton);
         
-        panel5.setLayout(new GridLayout(1, 5));
+        panel5.setLayout(new GridLayout(1,3));
         panel5.setOpaque(false);
         panel5.setBounds(0, 730, 450, 60);
     
