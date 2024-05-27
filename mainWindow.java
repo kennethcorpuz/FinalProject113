@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 
 public class mainWindow implements ActionListener, FocusListener {
 
@@ -64,8 +65,6 @@ public class mainWindow implements ActionListener, FocusListener {
     JPanel panel5 = new JPanel();
     ImageIcon homeIcon = new ImageIcon("images/icons8-home-30.png");
     JButton homeButton = new JButton(homeIcon);
-    ImageIcon bookmarkIcon = new ImageIcon("images/icons8-bookmark-30.png");
-    JButton bookmarkButton = new JButton(bookmarkIcon);
     ImageIcon accountIcon = new ImageIcon("images/icons8-account-30.png");
     JButton accountButton = new JButton(accountIcon);
 
@@ -85,7 +84,7 @@ public class mainWindow implements ActionListener, FocusListener {
             Image hotelImage = hotelBackground.getImage();
             JPanel2 hotelPanel = new JPanel2(hotelImage, 15, 15);
     
-            // Set properties for book now button
+            // Set properties for book now and bookmark button
             bookNowButton.setHorizontalAlignment(JLabel.CENTER);
             bookNowButton.setForeground(Color.white);
             bookNowButton.setBackground(new Color(52, 186, 235));
@@ -93,7 +92,7 @@ public class mainWindow implements ActionListener, FocusListener {
             bookNowButton.setPreferredSize(new Dimension(150, 40));
             bookNowButton.setArcSize(50, 50);
             bookNowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    
+            
             // Create panel for book now button
             JPanel bookNowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             bookNowPanel.setBackground(new Color(32, 32, 32));
@@ -168,13 +167,6 @@ public class mainWindow implements ActionListener, FocusListener {
         homeButton.addActionListener(this);
         panel5.add(homeButton);
     
-        bookmarkButton.setBorderPainted(false);
-        bookmarkButton.setPreferredSize(new Dimension(100, 60));
-        bookmarkButton.setBackground(new Color(32, 32, 32));
-        bookmarkButton.setFocusPainted(false);
-        bookmarkButton.addActionListener(this);
-        panel5.add(bookmarkButton);
-    
         accountButton.setBorderPainted(false);
         accountButton.setPreferredSize(new Dimension(100, 60));
         accountButton.setBackground(new Color(32, 32, 32));
@@ -182,7 +174,7 @@ public class mainWindow implements ActionListener, FocusListener {
         accountButton.addActionListener(this);
         panel5.add(accountButton);
         
-        panel5.setLayout(new GridLayout(1,3));
+        panel5.setLayout(new GridLayout(1,2));
         panel5.setOpaque(false);
         panel5.setBounds(0, 730, 450, 60);
         // Bottom Navigation design end
@@ -201,12 +193,9 @@ public class mainWindow implements ActionListener, FocusListener {
         searchButton.setBorder(new LineBorder(Color.RED));
         searchButton.setBackground(new Color(32, 32, 32));
         searchButton.setPreferredSize(20, 30);
-        searchButton.setHorizontalTextPosition(SwingConstants.CENTER);
-        searchButton.setVerticalTextPosition(SwingConstants.CENTER);
         searchButton.setArcSize(50, 50);
         searchButton.addActionListener(this);
         searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        searchButtonPanel.setForeground(Color.WHITE);
         searchButtonPanel.add(searchButton);
         searchButtonPanel.setOpaque(false);
         searchButtonPanel.setBounds(230, 20, 300, 200);
@@ -300,11 +289,7 @@ public class mainWindow implements ActionListener, FocusListener {
             CardLayout cardLayout = (CardLayout) cards.getLayout();
             cardLayout.show(cards, "accountPanel");
             
-        } else if (e.getSource() == bookmarkButton) {
-            CardLayout cardLayout = (CardLayout) cards.getLayout();
-            cardLayout.show(cards, "bookmarkPanel");
-            
-        }
+        }  
     }
 
     // Function for adding and removing panels for the left and right arrow Logic
