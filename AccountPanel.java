@@ -26,6 +26,8 @@ public class AccountPanel extends JPanel implements ActionListener {
         text.setForeground(Color.white);
         text.setBounds(50, 50, 100, 100);
 
+ 
+        // Bottom Navigation design start
         homeButton.setPreferredSize(new Dimension(100, 60));
         homeButton.setBorderPainted(false);
         homeButton.setBackground(new Color(32, 32, 32));
@@ -50,7 +52,9 @@ public class AccountPanel extends JPanel implements ActionListener {
         bottomNavigation.setLayout(new GridLayout(1, 3));
         bottomNavigation.setOpaque(false);
         bottomNavigation.setBounds(0, 730, 450, 60);
+        // Bottom navigation design end
 
+        // Panel properties
         this.add(text);
         this.add(bottomNavigation);
         this.setOpaque(true);
@@ -61,6 +65,8 @@ public class AccountPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Logic for Bottom navigation
+        // Check if any of the buttons are pressed then go to the panel that is connected to the button
         if (e.getSource() == homeButton) {
             cardLayout.show(this.getParent(), "mainPanel");
         } else if (e.getSource() == bookmarkButton) {

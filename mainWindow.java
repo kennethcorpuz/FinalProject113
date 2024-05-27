@@ -13,7 +13,7 @@ public class mainWindow implements ActionListener, FocusListener {
     JPanel mainPanel = new JPanel();
     
 
-    // Search
+    // Search 
     JPanel searchButtonPanel = new JPanel();
     JPanel labelPanel = new JPanel();
     JLabel label2 = new JLabel("<html><div style = 'text-align: left; margin-left: 0px; margin-right: 80px;'>Let's <br>Discover</div><html>");
@@ -31,6 +31,8 @@ public class mainWindow implements ActionListener, FocusListener {
     JPanel hotelsTextPanel = new JPanel();
     JLabel hotelText = new JLabel("<html><div style = 'text-align: left; margin-left: 20px; margin-right: 30px;'>Hotels</div><html>");
 
+
+    // Hotel properties start
     String[] hotelNames = {"<html><div style= 'text-align: Left; margin-left: 15px;'>Sola Hotel</div><html>", 
                             "<html><div style= 'text-align: Left; margin-left: 15px;'>West Gate Hotel</div><html>",
                             "<html><div style= 'text-align: Left; margin-left: 15px;'>Hotel Lourdes</div><html>",
@@ -52,6 +54,8 @@ public class mainWindow implements ActionListener, FocusListener {
                         "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 1,512<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
                         "<html><div style= 'text-align: Left; margin-left: 15px; font-size: 20px; color: rgb(3, 252, 40);'>Php 1,194<br><div style = 'text-align: left; margin-left: 4px; font-size: 10px; color: rgb(215, 219, 216)'>per night</div></div><html>",
                         };
+    // Hotel properties end
+    
     
     JPanel[] hotelsPanels; // Array to store hotel panels
     int currentHotelIndex = 0;
@@ -69,7 +73,7 @@ public class mainWindow implements ActionListener, FocusListener {
 
     mainWindow() {
 
-
+        // Loop to create instances for hotelPanels Start
         hotelsPanels = new JPanel[hotelNames.length];
         for (int i = 0; i < hotelNames.length; i++) {
             // Create components for each hotel
@@ -122,6 +126,8 @@ public class mainWindow implements ActionListener, FocusListener {
             hotelsPanels[i].add(infoPanel);
             hotelsPanels[i].setBounds(40, 260, 350, 460);
         }
+        // Loop to create instances for hotelPanels end
+        
     
         // Initialize the first hotel panel to be visible
         mainPanel.setLayout(null);
@@ -129,7 +135,7 @@ public class mainWindow implements ActionListener, FocusListener {
         mainPanel.setBackground(new Color(32, 32, 32));
         mainPanel.add(hotelsPanels[currentHotelIndex]);
         
-        
+        // Hotels navigation design start
         leftArrowButton.setOpaque(true);
         leftArrowButton.setBackground(new Color(32, 32, 32));
         leftArrowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -152,7 +158,9 @@ public class mainWindow implements ActionListener, FocusListener {
         hotelsTextPanel.setBounds(20, 200, 170, 70);
         hotelsTextPanel.setOpaque(false);
         hotelsTextPanel.add(hotelText);
-    
+        // Hotels navigtion design end
+        
+        // Bottom Navigation design start
         homeButton.setPreferredSize(new Dimension(100, 60));
         homeButton.setBorderPainted(false);
         homeButton.setBackground(new Color(32, 32, 32));
@@ -177,14 +185,18 @@ public class mainWindow implements ActionListener, FocusListener {
         panel5.setLayout(new GridLayout(1,3));
         panel5.setOpaque(false);
         panel5.setBounds(0, 730, 450, 60);
-    
+        // Bottom Navigation design end
+
+        // Hotels word design
         label2.setFont(new Font("SansSerif", Font.PLAIN, 30).deriveFont(Font.BOLD, 40));
         label2.setForeground(Color.white);
         label2.setBounds(200, 200, 100, 100);
         labelPanel.add(label2);
         labelPanel.setBounds(20, 20, 300, 200);
         labelPanel.setOpaque(false);
-    
+        
+
+        // Search button design start
         searchButton.setOpaque(true);
         searchButton.setBorder(new LineBorder(Color.RED));
         searchButton.setBackground(new Color(32, 32, 32));
@@ -198,10 +210,11 @@ public class mainWindow implements ActionListener, FocusListener {
         searchButtonPanel.add(searchButton);
         searchButtonPanel.setOpaque(false);
         searchButtonPanel.setBounds(230, 20, 300, 200);
-    
+        
         searchField.setForeground(Color.LIGHT_GRAY);
-        searchField.setText(placeholder);
+        searchField.setText(placeholder); 
         searchField.addFocusListener(this);
+        // Search button design end
         
         panel5.setBounds(0, 730, 450, 60);
         
@@ -214,7 +227,7 @@ public class mainWindow implements ActionListener, FocusListener {
         mainPanel.add(searchButtonPanel);
         mainPanel.add(labelPanel);
 
-        
+        // Cardlayout for easy panel switching
         AccountPanel accountPanel = new AccountPanel((CardLayout) cards.getLayout(),  (CardLayout)cards.getLayout());;
 
         BookmarkPanel bookmarkPanel = new BookmarkPanel((CardLayout) cards.getLayout());
@@ -222,7 +235,9 @@ public class mainWindow implements ActionListener, FocusListener {
         cards.add(mainPanel, "mainPanel");
         cards.add(bookmarkPanel, "bookmarkPanel");
         cards.add(accountPanel, "accountPanel");
-    
+        
+
+        // frame properties
         frame.add(cards);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
@@ -233,9 +248,15 @@ public class mainWindow implements ActionListener, FocusListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // Logic for search button start
+        // 
         if (e.getSource() == searchButton) {
+            // Check if searchField is not showing
             if (!isSearchFieldVisible) {
-                mainPanel.add(searchField);
+                // if true
+                // searchField is added and following changes are made
+                mainPanel.add(searchField); 
                 labelPanel.setBounds(20, 50, 300, 200);
                 searchField.setBounds(40, 20, 320, 30);
                 searchField.setBackground(new Color(84, 84, 84));
@@ -246,6 +267,8 @@ public class mainWindow implements ActionListener, FocusListener {
                 mainPanel.revalidate();
                 isSearchFieldVisible = true; // Update flag variable
             } else {
+                // IF condition is false
+                // searchField is remove and following will run
                 mainPanel.remove(searchField);
                 labelPanel.setBounds(20, 20, 300, 200); // Reset labelPanel bounds
                 searchField.setForeground(Color.LIGHT_GRAY); // Reset text color
@@ -255,6 +278,8 @@ public class mainWindow implements ActionListener, FocusListener {
             mainPanel.repaint();
         }
 
+        // Logic for hotelsPanel navigation
+        // Check if either left or right arrow are pressed then cycle the hotelsPanels array
         if (e.getSource() == leftArrowButton) {
             currentHotelIndex--;
             if (currentHotelIndex < 0) {
@@ -269,7 +294,8 @@ public class mainWindow implements ActionListener, FocusListener {
             showCurrentHotelPanel();
         }
 
-        
+        // Logic for Bottom navigation
+        // Check if any of the buttons are pressed then go to the panel that is connected to the button
         if (e.getSource() == accountButton) {
             CardLayout cardLayout = (CardLayout) cards.getLayout();
             cardLayout.show(cards, "accountPanel");
@@ -281,6 +307,7 @@ public class mainWindow implements ActionListener, FocusListener {
         }
     }
 
+    // Function for adding and removing panels for the left and right arrow Logic
     private void showCurrentHotelPanel() {
         // Remove all hotel panels
         for (JPanel panel : hotelsPanels) {
@@ -292,8 +319,11 @@ public class mainWindow implements ActionListener, FocusListener {
         mainPanel.repaint();
     }
 
+
+   
     @Override
     public void focusGained(FocusEvent e) {
+        // Logic to check if the searchField is not empty to remove the placeholder "Search"
         if (searchField.getText().equals(placeholder)) {
             searchField.setText("");
             searchField.setForeground(Color.BLACK);
@@ -303,6 +333,7 @@ public class mainWindow implements ActionListener, FocusListener {
 
     @Override
     public void focusLost(FocusEvent e) {
+        // Logic to check if the searchField is empty to show the placeholder "Search"
         if (searchField.getText().isEmpty()) {
             searchField.setForeground(Color.LIGHT_GRAY);
             searchField.setText(placeholder);

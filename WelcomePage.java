@@ -17,9 +17,7 @@ public class WelcomePage implements ActionListener{
 
     WelcomePage(){ 
 
-        
-        // getStarted.setSize(200, 200);
-        // getStarted.setIcon(arrowIcon);
+        // Get started button desgin start
         getStarted.setBackground(new Color(27, 207, 162));
         getStarted.setArcSize(20, 20);
         getStarted.setForeground(new Color(227, 230, 229));
@@ -28,12 +26,14 @@ public class WelcomePage implements ActionListener{
         getStarted.addActionListener(this);
         getStarted.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-        // buttonPanel.setBackground(new Color(43, 221, 233));
         buttonPanel.setPreferredSize(new Dimension(10, 10));
         buttonPanel.setBounds(0, 630, 450, 100);
         buttonPanel.setOpaque(false);
         buttonPanel.setLayout(null);
+        buttonPanel.add(getStarted);
+        // Get started buton design end
 
+        // Label Design start
         welcome.setFont(new Font("SansSerif", Font.PLAIN, 30).deriveFont(Font.BOLD,28));
         welcome.setForeground(Color.WHITE); 
         welcome.setHorizontalAlignment(SwingConstants.CENTER); 
@@ -43,8 +43,9 @@ public class WelcomePage implements ActionListener{
         welcome2.setForeground(new Color(192, 192, 192));
         welcome2.setHorizontalAlignment((SwingConstants.CENTER));
         welcome2.setBounds(0, 570, 450, 50); 
+        // label design end
         
-        buttonPanel.add(getStarted);
+        // Frame properties
         frame.add(welcome);
         frame.add(welcome2);
         frame.add(buttonPanel);
@@ -61,8 +62,8 @@ public class WelcomePage implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-
+        
+        // Logic to move from welcomePage to the main window
         if(e.getSource() == getStarted){
             
             frame.dispose();
