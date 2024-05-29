@@ -77,7 +77,7 @@ public class AccountPanel extends JPanel implements ActionListener {
         this.add(usernamePanel);
         this.add(userPanel);
         this.add(imagePanel);
-        this.add(text);
+        // this.add(text);
         this.add(bottomNavigation);
         this.setOpaque(true);
         this.setLayout(null);

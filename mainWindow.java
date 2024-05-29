@@ -75,6 +75,8 @@ public class mainWindow implements ActionListener, FocusListener {
         // Loop to create instances for hotelPanels Start
         hotelsPanels = new JPanel[hotelNames.length];
         for (int i = 0; i < hotelNames.length; i++) {
+            //Create components for each hotel
+            final int index = i;
             // Create components for each hotel
             JLabel hotelNameLabel = new JLabel(hotelNames[i]);
             JLabel hotelDescriptionLabel = new JLabel(hotelDescriptions[i]);
@@ -92,7 +94,22 @@ public class mainWindow implements ActionListener, FocusListener {
             bookNowButton.setPreferredSize(new Dimension(150, 40));
             bookNowButton.setArcSize(50, 50);
             bookNowButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            
+
+            // Add action listener to bookNowButton
+            bookNowButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Create a new formPanel and set the hotel information
+                    formPanel formPanel = new formPanel();
+                    formPanel.setHotelInfo(hotelNames[index], hotelImages[index]);
+
+                    // Switch to the formPanel
+                    CardLayout cardLayout = (CardLayout) cards.getLayout();
+                    cards.add(formPanel, "formPanel");
+                    cardLayout.show(cards, "formPanel");
+                }
+            });
+                    
             // Create panel for book now button
             JPanel bookNowPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
             bookNowPanel.setBackground(new Color(32, 32, 32));
@@ -107,7 +124,7 @@ public class mainWindow implements ActionListener, FocusListener {
     
             // Set properties for hotel description label
             hotelDescriptionLabel.setForeground(Color.white);
-    
+
             // Create panel for hotel information
             JPanel infoPanel = new JPanel();
             infoPanel.setLayout(new GridLayout(4, 1));
@@ -219,10 +236,10 @@ public class mainWindow implements ActionListener, FocusListener {
         // Cardlayout for easy panel switching
         AccountPanel accountPanel = new AccountPanel((CardLayout) cards.getLayout(),  (CardLayout)cards.getLayout());;
 
-        BookmarkPanel bookmarkPanel = new BookmarkPanel((CardLayout) cards.getLayout());
+        
 
         cards.add(mainPanel, "mainPanel");
-        cards.add(bookmarkPanel, "bookmarkPanel");
+        
         cards.add(accountPanel, "accountPanel");
         
 
